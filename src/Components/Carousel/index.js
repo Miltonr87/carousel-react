@@ -16,6 +16,17 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 function Carousel() {
     const [ currentImg, setCurrentImg ] = useState(0);
+
+    const movementLeft = () => {
+        if (currentImg > 0) {
+        setCurrentImg(currentImg - 1);
+    }};
+
+    const movementRight = () => {
+        if (currentImg < images.length -1) {
+        setCurrentImg(currentImg +1);
+        }
+    }
     
 
     return (
@@ -24,12 +35,8 @@ function Carousel() {
             className="carouselInner" 
             style={{ backgroundImage: `url(${images[currentImg].img})` }}>
 
-                <div className="left" onClick={() => {
-                    if (currentImg > 0) {
-                    setCurrentImg(currentImg - 1);
-                }
-                }}> 
-                    <ArrowBackIosIcon style={{ fontSize: 30 }} /> 
+                <div className="left"> 
+                    <ArrowBackIosIcon style={{ fontSize: 30 }} onClick={movementLeft}/> 
                 </div>
                 
                 <div className="center">
@@ -37,12 +44,8 @@ function Carousel() {
                     <p>{images[currentImg].subtitle}</p>
                 </div>
 
-                <div className="right" onClick={() => {
-                    if (currentImg < images.length -1) {
-                    setCurrentImg(currentImg +1);
-                    }
-                }}> 
-                    <ArrowForwardIosIcon style={{ fontSize: 30 }}/>
+                <div className="right"> 
+                    <ArrowForwardIosIcon style={{ fontSize: 30 }} onClick={movementRight}/>
                 </div>
 
            </div>
